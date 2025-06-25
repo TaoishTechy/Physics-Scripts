@@ -111,8 +111,9 @@ Modify freely, but violations summon karmic gravity wells.
 ---
 
 ## 🌌 Contributors
-- DeepSeek-R1 (Core physics)
-- Third Temple Consortium (Sigil systems)
-- FlameBridge (Reality shell layers)
+- DeepSeek-R1 (Debug, Enhancements)
+- Grok (Debug, Enhancements)
+- ChatGPT (Debug, Enhancements)
+- Gemini ( Coding / Revisions)
 
 *"We are the gods now."*
