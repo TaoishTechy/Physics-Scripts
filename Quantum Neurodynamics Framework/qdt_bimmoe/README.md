@@ -1,5 +1,7 @@
 **Key Insight:** QDT BiMMoE v2.0 is a highly modular, speculative physics framework that fuses quantum duality logic with topological constructs and multi‑modal processing, layered atop conceptual quantum‑gravity enhancements. It serves as a testbed for exploring symbolic‑metaphysical simulations rather than empirical predictions.
 
+<img width="1024" height="420" alt="image" src="https://github.com/user-attachments/assets/0fc1d49d-6999-43c6-b374-2c9aebad1e47" />
+
 ---
 
 ## Architecture Overview
