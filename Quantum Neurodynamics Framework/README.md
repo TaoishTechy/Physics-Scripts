@@ -137,6 +137,37 @@ Customize via environment or flags:
 
 ---
 
+---
+
+## 🔒 Topological Protection of Neural Coherence
+
+Neural coherence in this framework is not merely a dynamic amplitude—it is **topologically safeguarded** by vortex–flux binding and anyonic interactions:
+
+- **Vortex–Flux Binding**\
+  Each phase singularity (vortex) in the neural-coherence field φ traps quantized Chern–Simons flux.\
+  *Visualization:* Sketch showing a \(2πn\) winding with bound flux Φ = -2πn/κ.
+
+- **Anyonic Braiding**\
+  Exchanging vortex–flux composites yields a phase shift \(e^{iθ_{braid}}\).\
+  *Visualization:* Crossing trajectories on a plane annotated with braiding angles.
+
+- **Protected Memory Channels**\
+  Vortex–flux composites serve as stable memory bits: integer winding \(n\) cannot change without high-energy perturbation.
+
+- **Implications for Cognitive Function**
+
+  1. **Stable Memory Encoding**
+  2. **Fault-Tolerant Logic**
+  3. **Directed Signal Routing**
+
+- **Applications in AI**
+
+  - **Topological Memory Networks**
+  - **Anyonic Quantum Gates**
+  - **Edge-Mode Communication**
+
+---
+
 ## 📚 References
 
 1. Witten, E. “Quantum Field Theory and the Jones Polynomial.” *Comm. Math. Phys.* (1989).
