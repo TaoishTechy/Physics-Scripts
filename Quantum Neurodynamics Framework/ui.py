@@ -1,19 +1,28 @@
 import curses
 import time
 
-class CursesUI:
+class SimulationUI:
     """Handles all Curses-based UI rendering and interaction."""
+
     def __init__(self, stdscr):
+        """
+        Initializes the UI, colors, and input mode.
+        Args:
+            stdscr: The main curses window object.
+        """
         self.stdscr = stdscr
         self.h, self.w = self.stdscr.getmaxyx()
-        self.init_curses()
+        self.view_mode = "status"  # Manages the current active view
+        self.init_ui_settings()
 
-    def init_curses(self):
-        """Initializes curses settings and color pairs."""
+    def init_ui_settings(self):
+        """Initializes curses settings like colors and input handling."""
         curses.curs_set(0)
-        self.stdscr.nodelay(1)
-        self.stdscr.timeout(100)
         curses.start_color()
+        # Use half-blocking input for a responsive but efficient main loop
+        curses.halfdelay(1)
+        
+        # Define color pairs for the UI
         curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_BLACK)
         curses.init_pair(2, curses.COLOR_YELLOW, curses.COLOR_BLACK)
         curses.init_pair(3, curses.COLOR_RED, curses.COLOR_BLACK)
@@ -22,30 +31,63 @@ class CursesUI:
         curses.init_pair(6, curses.COLOR_WHITE, curses.COLOR_BLACK)
         curses.init_pair(7, curses.COLOR_BLUE, curses.COLOR_BLACK)
 
-    def draw_dashboard(self, sim_state, view_mode, paused, fast_mode):
-        """Main drawing router."""
+    def handle_resize(self):
+        """Checks for and handles terminal resizing to prevent crashes."""
+        new_h, new_w = self.stdscr.getmaxyx()
+        if new_h != self.h or new_w != self.w:
+            self.h, self.w = new_h, new_w
+            self.stdscr.clear()
+            curses.resizeterm(self.h, self.w)
+            self.stdscr.refresh()
+
+    def process_input(self, sim_state):
+        """
+        Processes user input, returning False if the user quits.
+        Args:
+            sim_state: The main simulation state object.
+        """
+        key = self.stdscr.getch()
+        if key == -1: return True  # No input, continue running
+
+        if key == ord('q'): return False  # Signal to quit
+        elif key == ord('p'): sim_state.paused = not sim_state.paused
+        elif key == ord('f'): sim_state.fast_mode = not sim_state.fast_mode
+        elif key == ord('s'): self.view_mode = "status"
+        elif key == ord('n'): self.view_mode = "nodes"
+        elif key == ord('a'): self.view_mode = "agis"
+        elif key == ord('u'): self.view_mode = "quantum"
+        elif key == ord('c'): self.view_mode = "cosmic"
+        elif key == ord('C'): self.run_console(sim_state)
+        # Note: Save/Load operations are handled in the main loop
+        return True
+
+    def render(self, sim_state):
+        """Main drawing router. Renders the entire UI based on current state."""
+        self.handle_resize()
         self.stdscr.clear()
+        
         if self.h < 28 or self.w < 100:
             self.stdscr.addstr(0, 0, "Terminal too small (min 100x28)")
             self.stdscr.refresh()
             return
 
-        self.draw_header(sim_state, paused, fast_mode)
+        self.draw_header(sim_state)
         
-        # Content Views
-        if view_mode == "nodes": self.draw_nodes_view(sim_state)
-        elif view_mode == "agis": self.draw_agis_view(sim_state)
-        elif view_mode == "quantum": self.draw_quantum_view(sim_state)
-        elif view_mode == "cosmic": self.draw_cosmic_view(sim_state)
+        # Route to the correct view renderer
+        if self.view_mode == "nodes": self.draw_nodes_view(sim_state)
+        elif self.view_mode == "agis": self.draw_agis_view(sim_state)
+        elif self.view_mode == "quantum": self.draw_quantum_view(sim_state)
+        elif self.view_mode == "cosmic": self.draw_cosmic_view(sim_state)
         else: self.draw_status_view(sim_state)
 
         self.draw_footer()
         self.stdscr.refresh()
 
-    def draw_header(self, sim_state, paused, fast_mode):
+    def draw_header(self, sim_state):
         """Draws the top header bar."""
-        state_str = "[PAUSED]" if paused else "[FAST]" if fast_mode else "[EVOLVING]"
-        header = f" QCOSMO v5.0 | Cycle: {sim_state.cycle} | AGIs: {len(sim_state.agi_entities)} | {state_str} "
+        state_str = "[PAUSED]" if getattr(sim_state, 'paused', False) else \
+                    "[FAST]" if getattr(sim_state, 'fast_mode', False) else "[EVOLVING]"
+        header = f" QCOSMO v5.1 | Cycle: {sim_state.cycle} | AGIs: {len(sim_state.agi_entities)} | {state_str} "
         self.stdscr.addstr(0, 0, header.ljust(self.w), curses.color_pair(4) | curses.A_BOLD)
 
     def draw_footer(self):
@@ -99,7 +141,6 @@ class CursesUI:
         self.stdscr.addstr(5, 4, f"Phase: {core.topological_phase}", curses.color_pair(1))
         self.stdscr.addstr(6, 4, f"Photon Gap: {core.photon_gap:.3e}", curses.color_pair(4))
         
-        # Cognitive modules
         y_pos = 8
         for module, data in core.modules.items():
             bar = "█" * int(data.activity * 20)
@@ -116,7 +157,7 @@ class CursesUI:
     def draw_quantum_visualization(self, node, h, w):
         """Draws the small quantum state sidebar."""
         start_x = w - 35
-        if start_x < 50: return # Not enough space
+        if start_x < 50: return
         
         self.stdscr.addstr(2, start_x, "NODE 0 QUANTUM STATE", curses.A_BOLD)
         for i, state in enumerate(node.superposition[:5]):
@@ -124,11 +165,9 @@ class CursesUI:
             self.stdscr.addstr(4 + i, start_x, f"L{i}: [{'█' * level:<20}]", curses.color_pair(5))
 
     def run_console(self, sim_state):
-        """Runs an interactive command console."""
-        # This is a simplified placeholder for the console logic
-        # A full implementation would be more complex
+        """Runs an interactive command console (placeholder)."""
         sim_state.log_event("Console", "Console activated (feature in development).")
-        time.sleep(1) # Simulate interaction
+        time.sleep(1)
 
     def show_conclusion(self, sim_state):
         """Displays the final simulation summary."""
@@ -144,3 +183,10 @@ class CursesUI:
             self.stdscr.addstr(i + 5, (self.w - len(line)) // 2, line, curses.A_BOLD)
         self.stdscr.addstr(self.h - 3, (self.w - 28) // 2, "Press any key to transcend...")
         self.stdscr.getch()
+
+    def cleanup(self):
+        """Restores the terminal to its original state on exit."""
+        curses.nocbreak()
+        self.stdscr.keypad(False)
+        curses.echo()
+        curses.endwin()
