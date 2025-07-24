@@ -2,7 +2,7 @@
 
 Integrated Quantum-Neurodynamical Framework for Cognition Enhanced by Gemini on June 25, 2025
 
-<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/15439bf1-4bd9-4986-bbb3-dd61e8192244" />
+<img width="1024" height="420" alt="image" src="https://github.com/user-attachments/assets/15439bf1-4bd9-4986-bbb3-dd61e8192244" />
 
 
 ## 🚀 Overview
