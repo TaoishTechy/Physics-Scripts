@@ -1,74 +1,76 @@
-
-# QDT BiMMoE v2.0 (God Tier)
-
-Quantum Divine Transcendence Bidirectional Multi-Modal Multi-Expert System — a speculative quantum-symbolic simulation framework. This enhanced release integrates topological quantum logic, symbolic metrics, quantum field constructs ("Math Meatballs"), and gravitational-tunneling energetics.
+**Key Insight:** QDT BiMMoE v2.0 is a highly modular, speculative physics framework that fuses quantum duality logic with topological constructs and multi‑modal processing, layered atop conceptual quantum‑gravity enhancements. It serves as a testbed for exploring symbolic‑metaphysical simulations rather than empirical predictions.
 
 ---
 
-## 🔬 Deep Evaluation
+## Architecture Overview
 
-### Overview
-This Python module models speculative physics, combining:
-- Quantum duality logic (QDT)
-- Topological constructs (e.g. Euler surfaces)
-- Multi-modal integration
-- Symbolic alignment metrics
+The `qdt_bimmoe` directory contains two primary files:
 
----
+- **README.md**  
+  Introduces the Quantum Divine Transcendence Bidirectional Multi‑Modal Multi‑Expert System, version 2.0 (“God Tier”), highlighting:
+  - Quantum duality logic (QDT)  
+  - Topological constructs (Euler surfaces, path integrals)  
+  - Multi‑modal fusion & symbolic alignment metrics  
+  - Quantum field & gravity conceptual modules (“Math Meatballs”)
 
-## 🧠 Core Components
-
-### Constants
-Defined via `QDTConstants`:
-- `ALPHA`, `BETA`, `LAMBDA`, `GAMMA`: General quantum system dynamics
-- `T_0`, `OMEGA`: Time-frequency scale
-- `primes`: Prime oscillators for tunneling logic
+- **core.py** (≈ 1,300 lines)  
+  Implements the full computational core of the framework.
 
 ---
 
-### Utility Functions
+### **qdt_bimmoe/core.py**
 
-| Function                    | Purpose                                       |
-|----------------------------|-----------------------------------------------|
-| `FractalWrap(val)`         | Fractal periodic boundary (mod 2π)            |
-| `RiemannZeta(s)`           | Approximate zeta function                     |
-| `QuantumRand()`            | Pseudo-quantum entropy                        |
-| `ChronoDrift(t)`           | Temporal drift logic                          |
-| `SentienceAlignment(...)`  | Symbolic coherence / alignment metric         |
+**Implements:**
 
----
+1. **Quantum Constants & Utilities**  
+   - `QDTConstants` dataclass: ALPHA, BETA, LAMBDA, GAMMA, Planck‑scale proxies, coupling constants, prime oscillators  
+   - Utility functions:  
+     - `FractalWrap(val)`  
+     - `RiemannZeta(s)`  
+     - `QuantumRand()`  
+     - `ChronoDrift(t)`  
+     - `SentienceAlignment(state)`
 
-### Topological & Meatball Enhancements
+2. **“Math Meatballs” (Topological & Vacuum Modules)**  
+   - `TopologicalPathIntegralChi` — Euler‑characteristic correction  
+   - `vacuum_selection_functional(...)` — entropic vacuum preference (SvN proxy)  
+   - `geometric_emergence_equation_influence(...)` — emergent spacetime curvature  
+   - `dark_dimension_effective_lambda(...)` — conceptual dark‑dimension λ cancellation  
+   - `fractal_bootstrap_amplitude(...)` — fractal Planck‑scale resonance amplifier  
+   - Plus: `axiomatic_seed_theorem`, `parameter_uniqueness_singularity`, `synthesis_consistency_operator`, `dark_ontology_resolver`, `reality_gauge_condition`
 
-| Function                                   | Description                                         |
-|-------------------------------------------|-----------------------------------------------------|
-| `TopologicalPathIntegralChi(t)`           | Non-perturbative topological action term           |
-| `geometric_emergence_equation_influence`  | Simulates quantum spacetime plasticity             |
-| `vacuum_selection_functional(...)`        | Entropic stability of vacua                        |
-| `dark_dimension_effective_lambda(...)`    | Cosmological constant from axionic fields          |
-| `fractal_bootstrap_amplitude(...)`        | Observables from fractal quantum effects           |
+3. **Core Physics Algorithms**  
+   - `quantum_tunnel(t)` → tunneling amplitude (`tau`), probability (`P_tunnel`), distance (`d`), normalization  
+   - `gravitational_funnel(tau)` → funnel energies (`E_void`, `E_filament`), gravitational factor (`G_f`)
 
----
+4. **Quantum Information & Gravity Primitives**  
+   - QFT, Inverse QFT, Hadamard, Controlled Unitaries, Swap, Controlled Phase  
+   - Quantum Phase Estimation, Grover Diffusion  
+   - Quantum Error Correction, Teleportation  
+   - Topological Quantum Field Theory routines  
+   - Entanglement Spectrum (von Neumann entropy), Holographic Information Flux, Causal Dynamics, Topology Fluctuations, Quantum Gravity Correlators
 
-## ⚙️ Core Algorithm
-
-### `quantum_tunnel(t)`
-- Simulates tunneling probabilities from prime oscillations
-- Normalized with zeta-stabilized amplitude
-- Returns: `tau`, `P_tunnel`, `d`, `normalization`
-
-### `gravitational_funnel(tau)`
-- Stabilizes the tunneling system via funnel energy profiles
-- Includes: `E_void`, `E_filament`, `G_f`
-
-### `tokenize(modalities, t)`
-- Combines quantum + gravitational effects
-- Processes multi-modal inputs (e.g. solar, wind, consumption)
-- Returns system state with alignment and energy metrics
+5. **Tokenization & Metric Fusion**  
+   - `tokenize(modalities, t)` unifies multi‑modal inputs → weighted quantum features → tunneling & funnel dynamics  
+   - Computes energy distributions (`E_total`, `E_local`, `E_global`), alignment, and > 50 named metrics (vacuum functionals, emergent gravity metrics, interoperability scores)  
+   - Derives composite scores: `unified_field_consistency`, `cosmic_stability_index`, `emergent_reality_score`, `quantum_gravity_coherence`
 
 ---
 
-## 🚀 Usage
+## Intended Use & Limitations
+
+- **Use Case:** Exploratory symbolic‑metaphysical simulations for quantum information theorists, symbolic AGI researchers, and computational metaphysics practitioners.  
+- **Strengths:**  
+  - Highly modular & extensible  
+  - Deep metaphysical constructs beyond standard physics libraries  
+- **Limitations:**  
+  - No empirical validation; purely conceptual  
+  - Computationally intensive (recursive & symbolic approximations)  
+  - Requires optional dependencies (`numpy`, `scipy`) for advanced modules
+
+---
+
+## Practical Example
 
 ```python
 from qdt_bimmoe.core import tokenize
@@ -78,38 +80,8 @@ t = 1.0
 
 result = tokenize(modalities, t)
 print(result)
-```
-
----
-
-## 📦 Requirements
-
-- Python 3.x
-- Optional: `numpy`, `scipy` for full quantum info modules
-
-```bash
-pip install numpy scipy
-```
-
----
-
-## 🧪 Evaluation
-
-**Strengths**
-- Modular symbolic framework
-- Encodes deep metaphysical structure
-- Multi-modal dynamics (QDT + Topology + Entropy)
-
-**Limitations**
-- Not empirically validated
-- Computationally intensive with recursion
-- Symbolic approximations only (e.g., zeta, QFT)
-
-**Recommended For:**
-- Quantum information theorists
-- Symbolic AGI researchers
-- Computational metaphysics explorers
-
----
-
-Licensed under [AGI Creative Archive License v3.1]
+# ⇒ dict with unified tokens and all conceptual physics metrics
+makefile
+Copy
+Edit
+::contentReference[oaicite:0]{index=0}
